@@ -60,9 +60,9 @@ export default {
             <nav>
                 <ul>
                     <li>
+                        <RouterLink to="/about">Artiklar</RouterLink>
+                        <RouterLink to="/about">Om</RouterLink>
                         <RouterLink to="/home">Hem</RouterLink>
-                    </li>
-                    <li>
                         <RouterLink to="/login" @click="logout">Logga ut</RouterLink>
                     </li>
                 </ul>

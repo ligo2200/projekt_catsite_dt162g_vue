@@ -31,6 +31,7 @@ export default {
 main {
   text-align: center;
   margin-top: 4%;
+  margin-bottom: -0.4%;
 }
 p {
   margin-top: 1%;
@@ -39,6 +40,4 @@ p {
 img {
   margin-top: 4%;
 }
-
-
 </style>
