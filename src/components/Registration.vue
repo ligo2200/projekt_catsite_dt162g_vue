@@ -146,7 +146,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
+    width: 35%;
     border: 1px solid rgb(49, 7, 73);
     box-shadow: 0px 1px 5px rgb(49, 7, 73);
 }

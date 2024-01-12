@@ -60,7 +60,7 @@ export default {
             <nav>
                 <ul>
                     <li>
-                        <RouterLink to="/about">Artiklar</RouterLink>
+                        <RouterLink to="/news">Artiklar</RouterLink>
                         <RouterLink to="/about">Om</RouterLink>
                         <RouterLink to="/home">Hem</RouterLink>
                         <RouterLink to="/login" @click="logout">Logga ut</RouterLink>
@@ -79,9 +79,10 @@ export default {
             <nav>
                 <ul>
                     <li>
-                        <RouterLink to="/about">Artiklar</RouterLink>
+                        <RouterLink to="/news">Artiklar</RouterLink>
                         <RouterLink to="/about">Om</RouterLink>
                         <RouterLink to="/registration">Registrera</RouterLink>
+                        <router-link to="/" class="login">Logga in</router-link>
                     </li>
                 </ul>
             </nav>
@@ -108,16 +109,17 @@ header {
 
 .heading h1 {
     margin-bottom: -4px;
-    margin-left: 40%;
+    margin-left: 96%;
 }
 
 nav {
     padding: 1%;
+    width: 20%;
 }
-
 li {
     list-style: none;
     margin-bottom: -45px;
+    
 }
 
 li a {
@@ -129,7 +131,7 @@ li a {
 }
 
 li a:hover {
-    background-color: rgba(173, 30, 255, 0.4);
+    background-color: rgba(173, 30, 255, 0.3);
     color: white;
 }
 </style>
