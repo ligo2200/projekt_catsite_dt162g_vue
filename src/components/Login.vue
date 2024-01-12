@@ -35,7 +35,7 @@ export default {
                     password: this.login.password
                 };
 
-                const response = await fetch("http://localhost:3000/users", {
+                const response = await fetch("http://localhost:3000/users/login", {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
@@ -61,7 +61,7 @@ export default {
 
                 } else {
 
-                    //message if log in failed
+                    //message if login failed
                     this.message = "Inloggningen misslyckades, var god försök igen."
                 }
 
@@ -72,7 +72,7 @@ export default {
 
                     //clear timeinterval when user logs out
                     clearTimeout(logoutTimeout);
-                }, 60 * 60* 1000);
+                }, 60 * 60 * 1000);
             }
         }
     }
@@ -86,7 +86,7 @@ export default {
         <!--Form for log in users-->
         <div class="cont1">
             <!--<p class="text-green-500 mb-6">{{ message }}</p>-->
-            <span class="error text-red-500 mt-6">{{ message }}</span>
+            <span class="error">{{ message }}</span>
             <form @submit.prevent="loginUser()">
 
                 <br>
@@ -95,7 +95,7 @@ export default {
 
                 <label for="password">Lösenord:</label>
                 <input v-model="login.password" type="password" id="password" name="password">
-                
+
                 <button type="submit" value="Logga in">Logga in</button>
             </form>
         </div>
@@ -110,6 +110,7 @@ export default {
     width: 100%;
     margin-top: 3%;
 }
+
 .cont1 {
     display: flex;
     flex-direction: column;
@@ -118,11 +119,12 @@ export default {
     border: 1px solid rgb(49, 7, 73);
     box-shadow: 0px 1px 5px rgb(49, 7, 73);
 }
-.error {
-    color: red;
-    font-size: 1.1rem;
-}
 
+.error {
+    margin-top: 3%;
+    color: red;
+    font-size: 0.8em;
+}
 </style>
 
 

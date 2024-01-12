@@ -7,7 +7,6 @@ export default {
             newUser: {     // object with properties
                 first_name: "",
                 last_name: "",
-                email: "",
                 username: "",
                 password: ""
             },
@@ -25,6 +24,7 @@ export default {
     emits: ["userAdded"],
     methods: {
         async addUser() {  //method for adding new users
+            console.log("newUser:", this.newUser);
 
 
             //clear messages
@@ -56,7 +56,7 @@ export default {
                 this.message4 = "Kontrollera att lösenordet är minst 8 tecken långt. Kontrollera att du skrivit minst en stor bokstav, minst en liten bokstav samt minst två siffror i lösenordet.";
             }
 
-            if (this.newUser.name.length > 3 && passwordRegex.test(this.newUser.password)) {
+            if (passwordRegex.test(this.newUser.password)) {
 
                 let UserBody = {
                     first_name: this.newUser.first_name,
@@ -90,6 +90,7 @@ export default {
                 this.$emit("userAdded");
 
             } else {
+                console.error("Something went wrong. Please try again.");
                 this.message = "Något gick fel, var god försök igen.";
             }
 
@@ -104,26 +105,27 @@ export default {
         <h2>Registrering</h2>
         <!--Form for registration of new users-->
         <div class="cont1">
-            <span class="text-green-500 mb-6 mt-4">{{ message5 }}</span>
-            <span class="error text-red-500 mb-6">{{ message }}</span>
+            <br>
+            <span class="message">{{ message5 }}</span>
+            <span class="error">{{ message }}</span>
             <form @submit.prevent="addUser()" class="flex flex-col items-center">
 
                 <br>
-                <label for="first_name" class="-mb-4 text-white">Förnamn:</label>
+                <label for="first_name">Förnamn:</label>
                 <input v-model="newUser.first_name" type="text" id="first_name" name="first_name">
-                <span class="error text-red-500 -mt-4">{{ message1 }}</span><br><br>
+                <span class="error">{{ message1 }}</span><br><br>
 
-                <label for="last_name" class="-mb-4 text-white">Efternamn:</label>
+                <label for="last_name">Efternamn:</label>
                 <input v-model="newUser.last_name" type="text" id="last_name" name="last_name">
-                <span class="error text-red-500 -mt-4">{{ message2 }}</span><br><br>
+                <span class="error">{{ message2 }}</span><br><br>
 
-                <label for="username" class="-mb-4 text-white">Användarnamn:</label>
+                <label for="username">Användarnamn:</label>
                 <input v-model="newUser.username" type="text" id="username" name="username">
-                <span class="error text-red-500 -mt-4">{{ message3 }}</span><br><br>
+                <span class="error">{{ message3 }}</span><br><br>
 
-                <label for="password" class="-mb-4 text-white">Lösenord:</label>
+                <label for="password">Lösenord:</label>
                 <input v-model="newUser.password" type="password" id="password" name="password">
-                <span class="error text-red-500 text-center -mt-4">{{ message4 }}</span><br><br>
+                <span class="error">{{ message4 }}</span><br><br>
 
                 <input type="submit" value="Registrera">
 
@@ -155,7 +157,13 @@ export default {
 }
 .error {
     color: red;
-    font-size: 1.1rem;
+    font-size: 1.1em;
+    display: block;
+}
+.message {
+    color: green;
+    font-size: 1.1em;
+    display: block;
 }
 </style>
 

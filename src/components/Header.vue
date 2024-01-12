@@ -134,5 +134,12 @@ li a:hover {
     background-color: rgba(173, 30, 255, 0.3);
     color: white;
 }
+
+.loggedin-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: end;
+}
 </style>
 
