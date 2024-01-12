@@ -45,6 +45,21 @@ const router = createRouter({
         }
       }
     },
+    {
+      path: '/registration', 
+      name: 'registration', 
+      component: () => import('../views/RegistrationView.vue'),
+    },
+    {
+      path: '/about', 
+      name: 'about', 
+      component: () => import('../views/AboutView.vue'),
+    },
+    {
+      path: '/news', 
+      name: 'news', 
+      component: () => import('../views/NewsView.vue'),
+    }
   ]
 })
 

@@ -1,17 +1,15 @@
 <template>
-
     <Registration />
+</template>
     
-    </template>
-    
-    <script>
-    import Registration from '../components/Registration.vue';
-    
-    export default {
-        components: {
-            Registration
-        }
+<script>
+import Registration from '../components/Registration.vue';
+
+export default {
+    components: {
+        Registration
     }
-    
-    
-    </script>
+}
+
+
+</script>

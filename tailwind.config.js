@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'seaweedgreen': '#3A400E',
+        'lilac': 'rgb(173, 30, 255)',
         'orange': '#D95204'
       }
     },
