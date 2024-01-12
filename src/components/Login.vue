@@ -93,11 +93,8 @@ export default {
                 <label for="username">Användarnamn:</label>
                 <input v-model="login.username" type="text" id="username" name="username">
 
-                
                 <label for="password">Lösenord:</label>
                 <input v-model="login.password" type="password" id="password" name="password">
-
-
                 
                 <button type="submit" value="Logga in">Logga in</button>
             </form>
@@ -120,6 +117,10 @@ export default {
     width: 25%;
     border: 1px solid rgb(49, 7, 73);
     box-shadow: 0px 1px 5px rgb(49, 7, 73);
+}
+.error {
+    color: red;
+    font-size: 1.1rem;
 }
 
 </style>

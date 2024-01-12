@@ -125,7 +125,7 @@ li a {
     margin-right: 5px;
     transition: background-color 0.4s;
     padding: 2%;
-    color: rgb(147, 52, 236);
+    color: rgb(170, 103, 233);
 }
 
 li a:hover {
