@@ -22,9 +22,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/addpost', 
-      name: 'addpost', 
-      component: () => import('../views/AddPostView.vue'),
+      path: '/addcat', 
+      name: 'addcat', 
+      component: () => import('../views/AddCatView.vue'),
       beforeEnter: (to, from, next) => {
         if(localStorage.getItem('token')) {
           next()
@@ -34,9 +34,21 @@ const router = createRouter({
       }
     },
     {
-      path: '/seeallposts', 
-      name: 'seeallposts', 
-      component: () => import('../views/SeeAllPostsView.vue'),
+      path: '/addarticle', 
+      name: 'addarticle', 
+      component: () => import('../views/AddArticleView.vue'),
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('token')) {
+          next()
+        } else {
+          next('/')
+        }
+      }
+    },
+    {
+      path: '/seeallcats', 
+      name: 'seeallcats', 
+      component: () => import('../views/SeeAllCatsView.vue'),
       beforeEnter: (to, from, next) => {
         if(localStorage.getItem('token')) {
           next()
@@ -56,9 +68,9 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
-      path: '/news', 
-      name: 'news', 
-      component: () => import('../views/NewsView.vue'),
+      path: '/articles', 
+      name: 'articles', 
+      component: () => import('../views/ArticlesView.vue'),
     }
   ]
 })

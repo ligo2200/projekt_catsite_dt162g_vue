@@ -17,7 +17,7 @@ export default {
     <div class="cont-right">
       <h2>Hej och välkommen till din sida!</h2>
       <div class="latest">
-        <h3>Din senaste post</h3>
+        <h3>Ditt senaste inlägg</h3>
       </div>
     </div>
 

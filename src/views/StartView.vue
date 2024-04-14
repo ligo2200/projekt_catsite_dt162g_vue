@@ -18,7 +18,7 @@ export default {
 <template>
   <main>
     <h1>Välkommen till Catsite!</h1>
-    <h2 class="text-sm lg:text-base">- En webbplats för kattälskare där vi kan få skryta om våra pälsklingar för varandra!</h2>
+    <h2 class="text-sm lg:text-base">- En webbplats för kattälskare!</h2>
     <Login @userLoggedin="onUserLoggedin" />
   <p>Inget konto?</p>
   <router-link to="/registration" class="reg">Klicka här för att registrera ett nytt konto</router-link>
