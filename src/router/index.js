@@ -22,9 +22,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/addcat', 
-      name: 'addcat', 
-      component: () => import('../views/AddCatView.vue'),
+      path: '/cat', 
+      name: 'cat', 
+      component: () => import('../views/CatView.vue'),
       beforeEnter: (to, from, next) => {
         if(localStorage.getItem('token')) {
           next()
