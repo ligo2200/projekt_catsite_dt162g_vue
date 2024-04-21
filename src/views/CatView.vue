@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <h1 class="">Katter</h1>
+        <h1 class="cathead">Katter</h1>
 
         <!--components for adding and updating cat here-->
         <div class="">
@@ -187,5 +187,23 @@ export default {
 
 .catsarticles {
     display: flex;
+}
+article img {
+    max-height: 250px;
+}
+article {
+    margin: 0px 15px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+}
+article div button {
+    margin: 0 5px 0 5px;
+}
+.cathead {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 </style>

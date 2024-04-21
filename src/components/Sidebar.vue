@@ -14,8 +14,8 @@ export default {
                 <ul>
                     <li><router-link to="/home">Hem</router-link></li>
                     <li><router-link to="/cat">Lägg till en katt</router-link></li>
-                    <li><router-link to="/seeallcats">Se alla dina katter</router-link></li>
                     <li><router-link to="/addarticle">Skapa artikel</router-link></li>
+                    <li><router-link to="/seeallcats">Se alla dina poster</router-link></li>
                 </ul>
             </nav>
         </div>
