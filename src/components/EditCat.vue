@@ -4,51 +4,45 @@
         <span class="error">{{ message }}</span>
         <form @submit.prevent="updateCat" class="">
             <div class="">
-                <div class="">
 
-                    <label for="updateName" class="">Ändra namn:</label><br>
-                    <input v-model="cat.name" type="text" id="updateName" name="updateName"
-                        class="">
-                        <br><span class="error">{{ message2 }}</span>
-                    <br><br>
+                <label for="updateName" class="">Ändra namn:</label><br>
+                <input v-model="cat.name" type="text" id="updateName" name="updateName" class="">
+                <br><span class="error">{{ message2 }}</span>
 
-                    <label for="updateColor" class="">Uppdatera färg:</label><br>
-                    <input v-model="cat.color" type="text" id="updateColor" name="updateColor"
-                        class="">
-                        <br><span class="error">{{ message5 }}</span>
-                </div>
+                <label for="updateBirth" class="">Uppdatera ålder:</label><br>
+                <input v-model="cat.birth" type="text" id="updateBirth" name="updateBirth" class="">
+                <br><span class="error">{{ message4 }}</span>
 
-                <br><br>
-                <div class="">
-                    <label for="updateBirth" class="">Uppdatera ålder:</label><br>
-                    <input v-model="cat.birth" type="text" id="updateBirth" name="updateBirth"
-                        class="">
-                        <br><span class="error">{{ message4 }}</span>
-                    <br><br>
-                    <label for="updateDescription" class="">Uppdatera personlighet:</label><br>
-                    <textarea v-model="cat.description" name="updateDescription" id="updateDescription" cols="30" rows="4"
-                        class=""></textarea>
-                        <br><span class="error">{{ message3 }}</span>
-                </div>
+                <label for="updateBreed" class="">Uppdatera ras:</label><br>
+                <input v-model="cat.breed" type="text" id="updateBreed" name="updateBreed" class="">
+                <br><span class="error">{{ message7 }}</span>
+
+                <label for="updateColor" class="">Uppdatera färg:</label><br>
+                <input v-model="cat.color" type="text" id="updateColor" name="updateColor" class="">
+                <br><span class="error">{{ message5 }}</span>
+
+                <label for="updateDescription" class="">Uppdatera personlighet:</label><br>
+                <textarea v-model="cat.description" name="updateDescription" id="updateDescription" cols="30" rows="4"
+                    class=""></textarea>
+                <br><span class="error">{{ message3 }}</span>
+
             </div>
 
             <br><br>
 
-            <label for="updateImage" class="">Uppdatera bild (valfritt):</label><br>
-            <input type="file" id="updateImage" name="updateImage" @change="updateImage" class=""><span
-                v-if="fish.image">
-                <p class="">Nuvarande bild:</p><img :src="cat.image" alt="bild på katt"
-                    height="80" width="100">
+            <label for="image" class="">Uppdatera bild (valfritt):</label><br>
+            <input type="file" id="image" name="image" @change="updateImage" class=""><span
+                v-if="cat.image">
+                <p class="">Nuvarande bild:</p><img :src="cat.image" alt="bild på katt" height="80" width="100">
             </span>
 
 
             <br><br>
-            <input type="submit" value="Uppdatera Katt" @click="$emit('hideEditCat')"
-                class="">
+            <input type="submit" value="Uppdatera Katt" @click="$emit('hideEditCat')" class="">
         </form>
     </div>
 </template>
-  
+
 <script>
 
 export default {
@@ -60,6 +54,7 @@ export default {
             message4: "",
             message5: "",
             message6: "",
+            message7: "",
         }
     },
     props: {
@@ -73,6 +68,10 @@ export default {
             if (!this.cat.name.length) {
                 this.message2 = "Du har glömt att fylla i kattens namn.";
                 return false;
+            }
+
+            if (this.cat.breed.length) {
+                this.message7 = "Du har glömt att fylla i ras."
             }
 
             if (!this.cat.description.length) {
@@ -114,12 +113,14 @@ export default {
             this.message3 = "";
             this.message4 = "";
             this.message5 = "";
+            this.message6 = "";
+            this.message7 = "";
 
             //get token from localstorage
             const token = localStorage.getItem("token");
 
             //get id
-            const id = this.cat.id;
+            const id = this.cat._id;
 
             //if updateImage true
             if (this.checkInput()) {
@@ -128,14 +129,15 @@ export default {
                 let formData = new FormData();
 
                 formData.append("name", this.cat.name);
-                formData.append("color", this.cat.color);
+                formData.append("breed", this.cat.breed);
                 formData.append("birth", this.cat.birth);
+                formData.append("color", this.cat.color);
                 formData.append("description", this.cat.description);
-                formData.append("image", this.fish.image);
+                formData.append("image", this.cat.image);
 
                 //fetch api with id
                 const response = await fetch("http://localhost:3000/cats" + id, {
-                    method: "POST",
+                    method: "PATCH",
                     headers: {
                         "Authorization": `Bearer ${token}`
                     },
@@ -150,7 +152,7 @@ export default {
                     this.message6 = 'Ändringarna är utförda!';
                 }
 
-            } 
+            }
 
             //this.getUpdatedCat();
             this.$emit('updatedCat');
@@ -160,4 +162,3 @@ export default {
 }
 
 </script>
-  

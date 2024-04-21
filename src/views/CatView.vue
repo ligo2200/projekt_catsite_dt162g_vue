@@ -11,16 +11,17 @@
                 <EditCat v-show="showEditCat" :cat="specificCat" @updatedCat="updatedCat" @imageUpdated="updatedCat()"
                     @hideEditCat="hideEditCat()" />
             </div>
-            <button @click="toggleAddCat" class="">Lägg till katt</button>
+            <!--<button @click="toggleAddCat" class="">Lägg till katt</button>-->
         </div>
 
-        <div class="">
-            <h2 class="">Alla Katter</h2>
+        <div class="showCats">
+            <h3 class="">Alla Katter</h3>
             <!--articles here with cats-->
-            <div class="">
+            <div class="catsarticles">
                 <article v-for="cat in cats" :key="cat._id">
                     <h3 class="">{{ cat.name }}</h3>
-                    <img v-if="cat.image" :src="cat.image" :alt="cat.name">
+                    <img v-if="cat.image" :src="'http://localhost:3000/uploads/' + cat.image" alt="bild på katt">
+                    <p>Ras: {{ cat.breed }}</p>
                     <p>Färg: {{ cat.color }}</p>
                     <p>Ålder: {{ calculateAge(cat.birth) }} år</p>
                     <p>Personlighet: {{ cat.description }}</p>
@@ -59,6 +60,11 @@ export default {
             //get token from localstorage
             const token = localStorage.getItem("token");
 
+            if (!token) {
+                console.log("ingen giltig token");
+                return;
+            }
+
             //get all cats
             const response = await fetch("http://localhost:3000/cats", {
                 method: "GET",
@@ -71,10 +77,10 @@ export default {
 
             const data = await response.json();
 
-            //data from fetchAPi into cat[]
+            //data from fetchAPi into cats[]
             this.cats = data;
 
-            this.showAddCat = false;
+            this.showAddCat = true;
         },
 
         async deleteCat(id) {
@@ -94,7 +100,7 @@ export default {
             //response in data
             const data = await response.json();
 
-            //load fish
+            //load cat
             this.getCat();
         },
         async editCat(id) {
@@ -137,11 +143,24 @@ export default {
         },
         calculateAge(birthDate) {
             // calculate age based on birth
+
+            //convert number to string
+            if (typeof birthDate === 'number') {
+                birthDate = birthDate.toString();
+            } 
+
+            // Extract year, month, and day from the birthDate string
+            const year = parseInt(birthDate.substring(0, 4));
+            const month = parseInt(birthDate.substring(4, 6)) - 1;
+            const day = parseInt(birthDate.substring(6, 8));
+
             const today = new Date();
-            const dateOfBirth = new Date(birthDate);
+
+            const dateOfBirth = new Date(year, month, day);
+
             let age = today.getFullYear() - dateOfBirth.getFullYear();
-            const monthDiff = today.getMonth() - dateOfBirth.getMonth();
-            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dateOfBirth.getDate())) {
+
+            if (today.getMonth() < month || (today.getMonth() === month && today.getDate() < day)) {
                 age--;
             }
             return age;
@@ -155,8 +174,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .hide-element {
     display: none;
+}
+
+.showCats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.catsarticles {
+    display: flex;
 }
 </style>
