@@ -54,6 +54,11 @@ export default {
                     //success, token saved in localStorage
                     localStorage.setItem("token", data.token);
 
+                    // success, userId saved to localstorage
+                    localStorage.setItem("userId", data.user['_id']);
+
+                    const userId = localStorage.getItem('userId');
+
                     this.$emit("userLoggedin");
 
                     loginStatus.login();
@@ -72,6 +77,7 @@ export default {
 
                     //clear timeinterval when user logs out
                     clearTimeout(logoutTimeout);
+                    this.$router.push("/login");
                 }, 60 * 60 * 1000);
             }
         }

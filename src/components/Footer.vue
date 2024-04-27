@@ -26,6 +26,10 @@ p {
 }
 a {
     color: rgb(170, 103, 233);
+    transition: color 0.2s;
+}
+a:hover {
+    color: white;
 }
 </style>
 

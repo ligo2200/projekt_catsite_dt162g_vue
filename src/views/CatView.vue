@@ -111,7 +111,7 @@ export default {
                 const token = localStorage.getItem("token");
 
                 //fetch api with id 
-                const response = await fetch("http://localhost:3000/cats" + id, {
+                const response = await fetch("http://localhost:3000/cats/" + id, {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,

@@ -63,7 +63,7 @@ export default {
                         <RouterLink to="/articles">Artiklar</RouterLink>
                         <RouterLink to="/about">Om</RouterLink>
                         <RouterLink to="/home">Hem</RouterLink>
-                        <RouterLink to="/login" @click="logout">Logga ut</RouterLink>
+                        <RouterLink to="/" @click="logout">Logga ut</RouterLink>
                     </li>
                 </ul>
             </nav>
@@ -125,7 +125,8 @@ li {
 li a {
     margin-left: 5px;
     margin-right: 5px;
-    transition: background-color 0.4s;
+    transition: background-color 0.3s;
+    transition: color 0.2s;
     padding: 2%;
     color: rgb(170, 103, 233);
 }
