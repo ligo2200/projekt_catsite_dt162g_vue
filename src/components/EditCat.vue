@@ -1,8 +1,9 @@
 <template>
-    <h1 class="">Ändra Katt</h1>
-    <div class="">
+    
+    <div class="catform">
         <span class="error">{{ message }}</span>
         <form @submit.prevent="updateCat" class="">
+            <h3 class="">Ändra Katt</h3>
             <div class="">
 
                 <label for="updateName" class="">Ändra namn:</label><br>
@@ -31,8 +32,7 @@
             <br><br>
 
             <label for="image" class="">Uppdatera bild (valfritt):</label><br>
-            <input type="file" id="image" name="image" @change="updateImage" class=""><span
-                v-if="cat.image">
+            <input type="file" id="image" name="image" @change="updateImage" class=""><span v-if="cat.image">
                 <p class="">Nuvarande bild:</p><img :src="cat.image" alt="bild på katt" height="80" width="100">
             </span>
 
@@ -42,6 +42,35 @@
         </form>
     </div>
 </template>
+
+<style scoped>
+.catform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.catform h3 {
+    text-align: center;
+}
+
+form {
+    width: 30%;
+    box-shadow: 0px 1px 5px purple;
+    padding: 3%;
+}
+
+label {
+    margin-bottom: -5%;
+    margin-top: 1%;
+}
+
+.error {
+    color: red;
+}
+</style>
+
 
 <script>
 

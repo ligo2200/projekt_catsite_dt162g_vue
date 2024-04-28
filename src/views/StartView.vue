@@ -2,14 +2,14 @@
 import Login from '../components/Login.vue';
 
 export default {
-    components: {
-        Login
-    },
-    methods: {
-        onUserLoggedin() {
-            this.$emit("userLoggedin");
-        }
+  components: {
+    Login
+  },
+  methods: {
+    onUserLoggedin() {
+      this.$emit("userLoggedin");
     }
+  }
 }
 
 
@@ -17,27 +17,42 @@ export default {
 
 <template>
   <main>
-    <h1>Välkommen till Catsite!</h1>
-    <h2 class="text-sm lg:text-base">- En webbplats för kattälskare!</h2>
-    <Login @userLoggedin="onUserLoggedin" />
-  <p>Inget konto?</p>
-  <router-link to="/registration" class="reg">Klicka här för att registrera ett nytt konto</router-link>
-
-  <img src="@/assets/images/header_1920.webp" alt="bild på liggande katt med blåa ögon.">
+    <div class="box">
+      <h1>Välkommen till Catsite!</h1>
+      <h2 class="">- En webbplats för kattälskare!</h2>
+      <Login @userLoggedin="onUserLoggedin" />
+      <p>Inget konto?</p>
+      <router-link to="/registration" class="reg">Klicka här för att registrera ett nytt konto</router-link>
+    </div>
   </main>
 </template>
 
 <style scoped>
 main {
   text-align: center;
-  margin-top: 4%;
-  margin-bottom: -0.4%;
+  background-image: url("@/assets/images/header_1920_white.jpg");
+}
+.box {
+  padding-bottom: 2%;
+}
+.box h1 {
+  padding: 2%;
+  color: rgb(61, 61, 61);
+}
+.box h2 {
+  margin-top: -2%;
+  color: rgb(61, 61, 61);
+}
+.box a {
+  padding: 2px 6px 2px 6px;
+  font-weight: 600;
+}
+.box a:hover {
+  background-color: rgba(138, 43, 226, 0.2);
 }
 p {
+  color: black;
   margin-top: 1%;
   margin-bottom: -0.1%;
-}
-img {
-  margin-top: 4%;
 }
 </style>

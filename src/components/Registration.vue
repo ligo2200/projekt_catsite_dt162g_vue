@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router';
 export default {
     data() {
         return {
+            isRegistered: false,
             newUser: {     // object with properties
                 first_name: "",
                 last_name: "",
@@ -24,8 +25,6 @@ export default {
     emits: ["userAdded"],
     methods: {
         async addUser() {  //method for adding new users
-            console.log("newUser:", this.newUser);
-
 
             //clear messages
             this.message = "";
@@ -34,7 +33,6 @@ export default {
             this.message3 = "";
             this.message4 = "";
             this.message5 = "";
-
 
 
             //variables with regex for checking password
@@ -84,16 +82,25 @@ export default {
                     password: ""
                 };
 
-                //message if user registrered correctly
-                this.message5 = "Användare registrerad! Gå vidare till inloggningssidan för att logga in.";
+                console.log(data);
 
-                this.$emit("userAdded");
+                if (response.ok) {
+                    this.isRegistered = true;
+
+                    //message if user registrered correctly
+                    this.message5 = "Användare registrerad! Gå vidare till inloggningssidan för att logga in.";
+
+                    this.$emit("userAdded");
+                } else {
+                    console.error("Något gick fel, försök igen!")
+                }
+
+                
 
             } else {
-                console.error("Something went wrong. Please try again.");
+                console.error("Något gick fel, var god försök igen.");
                 this.message = "Något gick fel, var god försök igen.";
             }
-
         }
     }
 }
@@ -104,7 +111,7 @@ export default {
     <div class="cont">
         <h2>Registrering</h2>
         <!--Form for registration of new users-->
-        <div class="cont1">
+        <div class="cont1" v-if="isRegistered==false">
             <br>
             <span class="message">{{ message5 }}</span>
             <span class="error">{{ message }}</span>
@@ -126,12 +133,18 @@ export default {
                 <label for="password">Lösenord:</label>
                 <input v-model="newUser.password" type="password" id="password" name="password">
                 <span class="error">{{ message4 }}</span><br><br>
+                <div class="submitbutton">
+                    <input type="submit" value="Registrera" role="button" class="submitbtn">
+                </div>
 
-                <input type="submit" value="Registrera">
 
             </form>
         </div>
-        <router-link to="/" class="login"><button>Logga in</button></router-link>
+        <div class="cont2" v-else>
+            <span class="message">Du har blivit registrerad!</span>
+            <span class="message">Du kan nu logga in!</span>
+            <router-link to="/" class="login"><button>Logga in</button></router-link>
+        </div>
     </div>
 </template>
 
@@ -142,8 +155,10 @@ export default {
     align-items: center;
     width: 100%;
     margin-top: 3%;
+    margin-bottom: 3%;
     text-align: center;
 }
+
 .cont1 {
     display: flex;
     flex-direction: column;
@@ -152,19 +167,51 @@ export default {
     border: 1px solid rgb(49, 7, 73);
     box-shadow: 0px 1px 5px rgb(49, 7, 73);
 }
+
 .login {
     margin-top: 2%;
 }
+
 .error {
     color: red;
     font-size: 1.1em;
     display: block;
 }
+
 .message {
     color: green;
     font-size: 1.1em;
     display: block;
+    background-color: rgba(0, 128, 0, 0.1);
+    padding: 5px 10px 5px 10px;
+}
+
+form {
+    width: 80%;
+    text-align: left;
+}
+
+form input {
+    width: 100%;
+    box-shadow: 1px 1px 1px rgb(95, 95, 95) inset;
+}
+
+.submitbutton {
+    width: 30% !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submitbtn {
+    width: 30%;
+    box-shadow: none;
+}
+.cont2 button {
+    margin-top: 15%;
+}
+.cont2 {
+    margin-bottom: 17%;
 }
 </style>
-
-

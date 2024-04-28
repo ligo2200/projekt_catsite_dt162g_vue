@@ -77,8 +77,9 @@ export default {
 
                     //clear timeinterval when user logs out
                     clearTimeout(logoutTimeout);
+
                     this.$router.push("/login");
-                }, 60 * 60 * 1000);
+                }, 2 * 60 * 60 * 1000);
             }
         }
     }
@@ -91,7 +92,6 @@ export default {
         <h3 class="">Logga in</h3>
         <!--Form for log in users-->
         <div class="cont1">
-            <!--<p class="text-green-500 mb-6">{{ message }}</p>-->
             <span class="error">{{ message }}</span>
             <form @submit.prevent="loginUser()">
 
@@ -116,7 +116,9 @@ export default {
     width: 100%;
     margin-top: 3%;
 }
-
+.cont h3 {
+    color: rgb(61, 61, 61);
+}
 .cont1 {
     display: flex;
     flex-direction: column;
@@ -124,6 +126,7 @@ export default {
     width: 25%;
     border: 1px solid rgb(49, 7, 73);
     box-shadow: 0px 1px 5px rgb(49, 7, 73);
+    background-color: white;
 }
 
 .error {
@@ -131,6 +134,10 @@ export default {
     color: red;
     font-size: 0.8em;
 }
+form input {
+    box-shadow: 1px 1px 1px rgb(116, 116, 116) inset;
+}
+
 </style>
 
 
