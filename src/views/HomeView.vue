@@ -32,7 +32,7 @@ export default {
       
 
       // get users cats      
-      const response = await fetch(`http://localhost:3000/cats/${userId}`, {
+      const response = await fetch(`http://localhost:3000/cats/user/${userId}`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,

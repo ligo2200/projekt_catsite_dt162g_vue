@@ -1,5 +1,5 @@
 <template>
-    
+
     <div class="catform">
         <span class="error">{{ message }}</span>
         <form @submit.prevent="updateCat" class="">
@@ -33,12 +33,15 @@
 
             <label for="image" class="">Uppdatera bild (valfritt):</label><br>
             <input type="file" id="image" name="image" @change="updateImage" class=""><span v-if="cat.image">
-                <p class="">Nuvarande bild:</p><img :src="cat.image" alt="bild på katt" height="80" width="100">
+                <p class="">Nuvarande bild:</p><img :src="'http://localhost:3000' + '/uploads/' + cat.image" alt="bild på katt" height="80">
             </span>
 
 
             <br><br>
-            <input type="submit" value="Uppdatera Katt" @click="$emit('hideEditCat')" class="">
+            <div class="buttoncont">
+                <input type="submit" value="Uppdatera Katt" @click="$emit('hideEditCat')" class="">
+                <button type="button" @click="$emit('hideEditCat')">Avbryt</button>
+            </div>
         </form>
     </div>
 </template>
@@ -69,6 +72,11 @@ label {
 .error {
     color: red;
 }
+
+.buttoncont {
+    display: flex;
+    justify-content: space-between;
+}
 </style>
 
 
@@ -94,26 +102,26 @@ export default {
     methods: {
         checkInput() {
 
-            if (!this.cat.name.length) {
+            if (!this.cat.name) {
                 this.message2 = "Du har glömt att fylla i kattens namn.";
                 return false;
             }
 
-            if (this.cat.breed.length) {
+            if (!this.cat.breed) {
                 this.message7 = "Du har glömt att fylla i ras."
             }
 
-            if (!this.cat.description.length) {
+            if (!this.cat.description) {
                 this.message3 = "Du har glömt att fylla i kattens personlighet.";
                 return false;
             }
 
             if (this.cat.birth === null || this.cat.birth === "") {
-                this.message4 = "Du har glömt att fylla i födelsedata. Endast siffror i formatet ååmmdd.";
+                this.message4 = "Du har glömt att fylla i födelsedata. Endast siffror i formatet ååååmmdd.";
                 return false;
             }
 
-            if (this.cat.color.length) {
+            if (!this.cat.color) {
                 this.message5 = "Du har glömt att skriva in vilken färg din katt har!";
                 return false;
             }
@@ -121,8 +129,9 @@ export default {
             return true;
         },
         updateImage(event) {
-            //
+            
             const file = event.target.files[0];
+            
 
             //if file exists
             if (file) {
@@ -135,6 +144,13 @@ export default {
 
         },
         async updateCat() {
+
+            // Kolla id-format innan du skickar det till backend
+            const isValidId = /^[0-9a-fA-F]{24}$/.test(this.cat._id);
+            if (!isValidId) {
+                console.error("Ogiltigt id-format");
+                return; // Avbryt funktionen om id:t inte är i rätt format
+            }
 
             //clear form
             this.message = "";
@@ -164,8 +180,8 @@ export default {
                 formData.append("description", this.cat.description);
                 formData.append("image", this.cat.image);
 
-                //fetch api with id
-                const response = await fetch("http://localhost:3000/cats" + id, {
+                //fetch api with name
+                const response = await fetch("http://localhost:3000/cats/" + id, {
                     method: "PATCH",
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -174,6 +190,8 @@ export default {
                 });
 
                 const data = await response.json();
+
+                console.log(data);
 
                 if (!response.ok) {
                     this.message = "Något gick fel, försök igen!"

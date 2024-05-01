@@ -25,7 +25,7 @@ export default {
                     // remove token and set loginStatusStore.isLoggedIn to false
                     localStorage.removeItem("token");
                     this.loginStatusStore.isLoggedIn = false;
-                    this.$router.push("login");
+                    this.$router.push("/");
                 } else {
                     // Handle logout failure
                     console.error('Logout failed: Token not found');

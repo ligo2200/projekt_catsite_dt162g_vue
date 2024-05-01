@@ -77,8 +77,6 @@ export default {
 
                     //clear timeinterval when user logs out
                     clearTimeout(logoutTimeout);
-
-                    this.$router.push("/login");
                 }, 2 * 60 * 60 * 1000);
             }
         }

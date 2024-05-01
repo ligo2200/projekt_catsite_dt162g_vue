@@ -5,7 +5,7 @@
         <!--components for adding and updating cat here-->
         <div class="">
             <div :class="{ 'hide-element': !showAddCat }" class="">
-                <AddCat v-show="showAddCat" @catAdded="getCat()" @imageAdded="updateImage()" />
+                <AddCat v-show="showAddCat" @catAdded="getUserCat()" @imageAdded="updateImage()" />
             </div>
             <div :class="{ 'hide-element': !showEditCat }" class="">
                 <EditCat v-show="showEditCat" :cat="specificCat" @updatedCat="updatedCat" @imageUpdated="updatedCat()"
@@ -56,7 +56,43 @@ export default {
         EditCat
     },
     methods: {
-        async getCat() {
+        async getUserCat() {
+            //get token from localstorage
+            const token = localStorage.getItem("token");
+
+            //if no token in localstorage
+            if (!token) {
+                console.log("ingen giltig token");
+                return;
+            }
+
+            // get userId from localstorage
+            const userId = localStorage.getItem('userId');
+
+            // if userId not in localstorage 
+            if (!userId) {
+                console.log("Användar-ID saknas i localStorage");
+                return;
+            }
+
+
+            // get users cats      
+            const response = await fetch(`http://localhost:3000/cats/user/${userId}`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await response.json();
+            //data into variable userCats
+            this.cats = data;
+
+            this.showAddCat = true;
+        },
+        /*async getCat() {
             //get token from localstorage
             const token = localStorage.getItem("token");
 
@@ -81,14 +117,14 @@ export default {
             this.cats = data;
 
             this.showAddCat = true;
-        },
+        },*/
 
         async deleteCat(id) {
             //get token from localstorage
             const token = localStorage.getItem("token");
 
             //fetch api with id for deletion
-            const response = await fetch("http://localhost:3000/cats" + id, {
+            const response = await fetch("http://localhost:3000/cats/" + id, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,
@@ -101,32 +137,51 @@ export default {
             const data = await response.json();
 
             //load cat
-            this.getCat();
+            this.getUserCat();
         },
         async editCat(id) {
 
+            //get userid from local storage
+            const userId = localStorage.getItem("userId");
+
             //check if there is an id
-            if (id) {
-                //get token from localstorage
-                const token = localStorage.getItem("token");
+            if (id && userId) {
+                try {
 
-                //fetch api with id 
-                const response = await fetch("http://localhost:3000/cats/" + id, {
-                    method: "GET",
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Accept": "application/json",
-                        "Content-Type": "application/json"
+                    //get token from localstorage
+                    const token = localStorage.getItem("token");
+
+                    console.log(id);
+
+                    //fetch api with id 
+                    const response = await fetch(`http://localhost:3000/cats/${id}`, {
+                        method: "GET",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        }
+                    });
+
+                    //response in data
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        //save data in variable
+                        this.specificCat = data;
+
+                        //for showing component
+                        this.showEditCat = true;
+                    } else {
+                        console.error("kunde inte hämta katt")
                     }
-                });
 
-                //response in data
-                const data = await response.json();
-                //save data in variable
-                this.specificCat = data;
 
-                //for showing component
-                this.showEditCat = true;
+                } catch (error) {
+                    console.error("Fel vid hämtning av kattdata:", error);
+                }
+            } else {
+                console.log('Något gick fel.');
             }
         },
         updateImage() { },
@@ -135,7 +190,7 @@ export default {
             this.showEditCat = false;
         },
         updatedCat() {
-            this.getCat();
+            this.getUserCat();
         },
         //hide/show component
         toggleAddCat() {
@@ -147,7 +202,7 @@ export default {
             //convert number to string
             if (typeof birthDate === 'number') {
                 birthDate = birthDate.toString();
-            } 
+            }
 
             // Extract year, month, and day from the birthDate string
             const year = parseInt(birthDate.substring(0, 4));
@@ -168,8 +223,7 @@ export default {
 
     },
     mounted() {
-        this.getCat();
-        this.editCat();
+        this.getUserCat();
     }
 }
 </script>
@@ -188,9 +242,11 @@ export default {
 .catsarticles {
     display: flex;
 }
+
 article img {
     max-height: 250px;
 }
+
 article {
     margin: 0px 15px 0px 15px;
     display: flex;
@@ -198,9 +254,11 @@ article {
     align-items: center;
     margin-bottom: 5%;
 }
+
 article div button {
     margin: 0 5px 0 5px;
 }
+
 .cathead {
     text-align: center;
     margin-top: 2%;
