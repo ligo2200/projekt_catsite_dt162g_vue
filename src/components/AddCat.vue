@@ -1,7 +1,7 @@
 <template>
     <!--Form for adding new cat-->
     <div class="catform">
-        <h2 class="">Lägg till Katt</h2>
+        <h3 class="">Lägg till Katt</h3>
         <span class="error">{{ message }}</span>
         <form @submit.prevent="addCat()" class="">
             <div class="">

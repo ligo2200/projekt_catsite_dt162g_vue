@@ -46,9 +46,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/seeallcats', 
-      name: 'seeallcats', 
-      component: () => import('../views/SeeAllCatsView.vue'),
+      path: '/seeallposts', 
+      name: 'seeallposts', 
+      component: () => import('../views/SeeAllPostsView.vue'),
       beforeEnter: (to, from, next) => {
         if(localStorage.getItem('token')) {
           next()

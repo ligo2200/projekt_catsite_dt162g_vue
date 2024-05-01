@@ -1,6 +1,7 @@
 <template>
     <div class="">
-        <h1 class="cathead">Katter</h1>
+        <h2 class="cathead">Katter</h2>
+        
 
         <!--components for adding and updating cat here-->
         <div class="">
@@ -11,7 +12,7 @@
                 <EditCat v-show="showEditCat" :cat="specificCat" @updatedCat="updatedCat" @imageUpdated="updatedCat()"
                     @hideEditCat="hideEditCat()" />
             </div>
-            <!--<button @click="toggleAddCat" class="">Lägg till katt</button>-->
+            
         </div>
 
         <div class="showCats">
@@ -41,7 +42,6 @@
 import AddCat from '../components/AddCat.vue';
 import EditCat from '../components/EditCat.vue';
 
-
 export default {
     data() {
         return {
@@ -53,7 +53,7 @@ export default {
     },
     components: {
         AddCat,
-        EditCat
+        EditCat,
     },
     methods: {
         async getUserCat() {

@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       userCats: [],
-      user: []
+      userArticles: []
     }
   },
   methods: {
@@ -46,6 +46,40 @@ export default {
       //data into variable userCats
       this.userCats = data;
     },
+    async getUserArticles() {
+      //get token from localstorage
+      const token = localStorage.getItem("token");
+
+      //if no token in localstorage
+      if (!token) {
+        console.log("ingen giltig token");
+        return;
+      }
+
+      // get userId from localstorage
+      const userId = localStorage.getItem('userId');
+
+      // if userId not in localstorage 
+      if (!userId) {
+        console.log("Användar-ID saknas i localStorage");
+        return;
+      }
+
+
+      // get users cats      
+      const response = await fetch(`http://localhost:3000/articles/user/${userId}`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+
+      const data = await response.json();
+      //data into variable userCats
+      this.userArticles = data;
+    },
     calculateAge(birthDate) {
       // calculate age based on birth
 
@@ -70,32 +104,10 @@ export default {
       }
       return age;
     },
-    async getUser() {
-
-      //get token from localstorage
-      const token = localStorage.getItem("token");
-
-      // get userId from localstorage
-      const userId = localStorage.getItem('userId');
-
-      // get user      
-      const response = await fetch(`http://localhost:3000/users/${userId}`, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-
-      const data = await response.json();
-      //data into variable user
-      this.user = data;
-    }
   },
   mounted() {
     this.getUserCats();
-    this.getUser();
+    this.getUserArticles();
   }
 }
 
@@ -103,15 +115,12 @@ export default {
 
 <template>
   <main>
-
-    <Sidebar />
-
-    <div class="cont-right">
-      <h2>Hej {{ user.first_name }} och välkommen till din sida!</h2>
-      <div class="cats">
-        <h3>Dina katter</h3>
-        <div class="catarticles">
-          <article v-for="userCat in userCats" :key="userCat._id">
+    <h2>Alla dina poster</h2>
+    <div class="allposts">
+      <div class="catposts">
+        <h3>Katter</h3>
+        <div class="flexcont">
+          <article v-for="userCat in userCats" :key="userCat._id" class="article">
             <h4 class="">{{ userCat.name }}</h4>
             <img v-if="userCat.image" :src="'http://localhost:3000/uploads/' + userCat.image" alt="bild på katt">
             <p>Ras: {{ userCat.breed }}</p>
@@ -121,28 +130,37 @@ export default {
           </article>
         </div>
       </div>
-    </div>
+      <div class="articleposts">
+        <h3>Artiklar</h3>
+        <div class="flexcont">
+          <article v-for="userArticle in userArticles" :key="userArticle._id" class="article">
+            <h4 class="">{{ userArticle.title }}</h4>
+            <p>Innehåll:</p>
+            <p>{{ userArticle.content }}</p>
+            <img v-if="userArticle.image" :src="'http://localhost:3000/uploads/' + userArticle.image" alt="artikelbild">
+          </article>
+        </div>
+      </div>
 
+    </div>
   </main>
 </template>
 
 <style scoped>
-main {
-  display: flex;
+h2 {
+  text-align: center;
   margin-top: 2%;
 }
-
-aside {
-  width: 20%;
-}
-
-.cont-right {
-  width: 60%;
+.catposts, .articleposts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
-
-.catarticles {
+.flexcont {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
+
+
 </style>

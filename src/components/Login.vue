@@ -69,16 +69,25 @@ export default {
                     //message if login failed
                     this.message = "Inloggningen misslyckades, var god försök igen."
                 }
-
-                //if login successful start automatic logout after 2 hours
-                const logoutTimeout = setTimeout(() => {
-                    const loginStatus = useLoginStatusStore();
-                    loginStatus.logout();
-
-                    //clear timeinterval when user logs out
-                    clearTimeout(logoutTimeout);
-                }, 2 * 60 * 60 * 1000);
             }
+
+            // Reset inactivetimer when user interacts with page.
+            window.addEventListener('mousemove', this.resetLogoutTimer);
+            window.addEventListener('keydown', this.resetLogoutTimer);
+        },
+        resetLogoutTimer() {
+            // authenticate status
+            const loginStatus = useLoginStatusStore();
+
+            // reset timer
+            clearTimeout(this.logoutTimeout);
+            this.logoutTimeout = setTimeout(() => {
+                // Log out user after inactivity
+                loginStatus.logout();
+
+                // redirect user to login-page
+                this.$router.push("/");
+            }, 2 * 60 * 60 * 1000);
         }
     }
 }
@@ -114,9 +123,11 @@ export default {
     width: 100%;
     margin-top: 3%;
 }
+
 .cont h3 {
     color: rgb(61, 61, 61);
 }
+
 .cont1 {
     display: flex;
     flex-direction: column;
@@ -132,10 +143,8 @@ export default {
     color: red;
     font-size: 0.8em;
 }
+
 form input {
     box-shadow: 1px 1px 1px rgb(116, 116, 116) inset;
 }
-
 </style>
-
-

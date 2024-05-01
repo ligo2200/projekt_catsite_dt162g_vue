@@ -13,9 +13,9 @@ export default {
             <nav>
                 <ul>
                     <li><router-link to="/home">Hem</router-link></li>
-                    <li><router-link to="/cat">Lägg till/Ändra en katt</router-link></li>
-                    <li><router-link to="/addarticle">Skapa artikel</router-link></li>
-                    <li><router-link to="/seeallcats">Se alla dina poster</router-link></li>
+                    <li><router-link to="/cat">Lägg till/Ändra katt</router-link></li>
+                    <li><router-link to="/addarticle">Skapa/Ändra artikel</router-link></li>
+                    <li><router-link to="/seeallposts">Se alla dina poster</router-link></li>
                 </ul>
             </nav>
         </div>
