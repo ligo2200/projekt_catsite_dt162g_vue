@@ -146,10 +146,9 @@ export default {
           <!--articles here-->
           <div class="articles">
               <article v-for="article in articles" :key="article._id">
-                  <h3 class="">{{ article.title }}</h3>
-                  <img v-if="article.image" :src="'http://localhost:3000/uploads/' + article.image" alt="artikelbild">
-                  <h4>Innehåll:</h4>
-                  <p>{{ article.content }}</p>
+                  <h4 class="">{{ article.title }}</h4>
+                  <img v-if="article.image" :src="'http://localhost:3000/uploads/' + article.image" alt="artikelbild" class="img">
+                  <p>{{ article.content.substring(0, 50) }}...</p>
                   <div>
                       <button @click="editArticle(article._id)">Ändra</button>
                       <button @click="deleteArticle(article._id)">Ta bort</button>
@@ -178,6 +177,7 @@ h1 {
 
 .articles {
   display: flex;
+  flex-wrap: wrap;
 }
 
 article img {

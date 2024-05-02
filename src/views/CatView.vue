@@ -21,7 +21,7 @@
             <div class="catsarticles">
                 <article v-for="cat in cats" :key="cat._id">
                     <h3 class="">{{ cat.name }}</h3>
-                    <img v-if="cat.image" :src="'http://localhost:3000/uploads/' + cat.image" alt="bild på katt">
+                    <img v-if="cat.image" :src="'http://localhost:3000/uploads/' + cat.image" alt="bild på katt" class="img">
                     <p>Ras: {{ cat.breed }}</p>
                     <p>Färg: {{ cat.color }}</p>
                     <p>Ålder: {{ calculateAge(cat.birth) }} år</p>
@@ -241,6 +241,7 @@ export default {
 
 .catsarticles {
     display: flex;
+    flex-wrap: wrap;
 }
 
 article img {
@@ -263,5 +264,8 @@ article div button {
     text-align: center;
     margin-top: 2%;
     margin-bottom: 2%;
+}
+.img {
+  border: 1px solid rgb(49, 7, 73);
 }
 </style>

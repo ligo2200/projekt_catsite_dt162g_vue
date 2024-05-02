@@ -113,11 +113,13 @@ export default {
         <div class="catarticles">
           <article v-for="userCat in userCats" :key="userCat._id">
             <h4 class="">{{ userCat.name }}</h4>
-            <img v-if="userCat.image" :src="'http://localhost:3000/uploads/' + userCat.image" alt="bild på katt">
-            <p>Ras: {{ userCat.breed }}</p>
-            <p>Färg: {{ userCat.color }}</p>
-            <p>Ålder: {{ calculateAge(userCat.birth) }} år</p>
-            <p>Personlighet: {{ userCat.description }}</p>
+            <img v-if="userCat.image" :src="'http://localhost:3000/uploads/' + userCat.image" alt="bild på katt" class="img">
+            <div class="info">
+              <p>Ras: {{ userCat.breed }}</p>
+              <p>Färg: {{ userCat.color }}</p>
+              <p>Ålder: {{ calculateAge(userCat.birth) }} år</p>
+              <p>Personlighet: {{ userCat.description }}</p>
+            </div>
           </article>
         </div>
       </div>
@@ -133,16 +135,32 @@ main {
 }
 
 aside {
-  width: 20%;
+  width: 30%;
+  margin-top: -37px;
 }
 
 .cont-right {
-  width: 60%;
+  width: 40%;
   text-align: center;
 }
 
 .catarticles {
   display: flex;
   justify-content: space-evenly;
+}
+
+.img {
+  border: 1px solid rgb(49, 7, 73);
+}
+.info {
+  text-align: left;
+  margin-left: 10px;
+}
+article {
+  border: 2px solid rgb(49, 7, 73);
+  padding: 4%;
+  background-color: rgba(49, 7, 73, 0.1);
+  box-shadow: 1px 1px 2px rgb(49, 7, 73);
+  margin: 1% 2% 4% 2%;
 }
 </style>
