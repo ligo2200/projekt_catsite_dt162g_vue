@@ -201,4 +201,11 @@ article div button {
   margin-top: 2%;
   margin-bottom: 2%;
 }
+@media screen and (max-width: 650px) {
+    .articles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  }
 </style>

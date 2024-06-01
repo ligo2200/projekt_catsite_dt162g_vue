@@ -165,4 +165,21 @@ label {
 .error {
     color: red;
 }
+@media screen and (max-width: 650px) {
+    form {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 651px) and (max-width: 999px) {
+    form {
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+    form {
+        width: 50%;
+    }
+}
 </style>

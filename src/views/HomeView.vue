@@ -113,7 +113,8 @@ export default {
         <div class="catarticles">
           <article v-for="userCat in userCats" :key="userCat._id">
             <h4 class="">{{ userCat.name }}</h4>
-            <img v-if="userCat.image" :src="'http://localhost:3000/uploads/' + userCat.image" alt="bild på katt" class="img">
+            <img v-if="userCat.image" :src="'http://localhost:3000/uploads/' + userCat.image" alt="bild på katt"
+              class="img">
             <div class="info">
               <p>Ras: {{ userCat.breed }}</p>
               <p>Färg: {{ userCat.color }}</p>
@@ -152,15 +153,108 @@ aside {
 .img {
   border: 1px solid rgb(49, 7, 73);
 }
+
 .info {
   text-align: left;
   margin-left: 10px;
 }
+
 article {
   border: 2px solid rgb(49, 7, 73);
   padding: 4%;
   background-color: rgba(49, 7, 73, 0.1);
   box-shadow: 1px 1px 2px rgb(49, 7, 73);
   margin: 1% 2% 4% 2%;
+}
+
+@media screen and (max-width: 650px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  aside {
+    margin-top: -1.9%;
+    width: 60%;
+    margin-left: 8.5%;
+    text-align: center;
+  }
+  .catarticles article {
+    width: 80%;
+  }
+  .catarticles {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cont-right {
+    width: 100%;
+  }
+  .cats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 651px) and (max-width: 999px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  aside {
+    margin-top: -1.9%;
+    width: 40%;
+    margin-left: 8.5%;
+    text-align: center;
+  }
+  .catarticles article {
+    width: 50%;
+  }
+  .catarticles {
+    width: 100%;
+  }
+  .cont-right {
+    width: 100%;
+  }
+  .cats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+  .cont-right {
+    margin-left: 10%;
+  }
+  aside {
+    margin-top: -1.9%;
+    width: 45%;
+  }
+  .catarticles article {
+    width: 50%;
+  }
+  .catarticles {
+    width: 80%;
+  }
+  .cont-right {
+    width: 100%;
+  }
+  .cats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1401px) and (max-width: 1800px) {
+  .cont-right {
+    margin-left: 10%;
+  }
+  aside {
+    margin-top: -1.9%;
+  }
 }
 </style>

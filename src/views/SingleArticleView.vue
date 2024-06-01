@@ -53,4 +53,39 @@ main div p {
 img {
   border: 1px solid rgb(49, 7, 73);
 }
+@media screen and (max-width: 650px) {
+    main h2 {
+        text-align: center;
+    }
+    main div p {
+        width: 90%;
+        padding: 2%;
+        text-align: center;
+    }
+    img {
+        width: 80%;
+    }
+  }
+  
+  @media screen and (min-width: 651px) and (max-width: 999px) {
+    main h2 {
+        text-align: center;
+        padding: 2%;
+    }
+    main div p {
+        width: 90%;
+        padding: 2%;
+        text-align: center;
+    }
+    img {
+        width: 80%;
+    }
+  }
+  
+  @media screen and (min-width: 1000px) and (max-width: 1400px) {
+    main h2 {
+        text-align: center;
+        padding: 2%;
+    }
+  }
 </style>

@@ -42,4 +42,28 @@ li a:hover {
     color: white;
 }
 
+@media screen and (max-width: 650px) {
+   
+}
+
+@media screen and (min-width: 651px) and (max-width: 999px) {
+   
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+    
+}
+
+@media screen and (min-width: 1401px) and (max-width: 1800px) {
+    aside {
+        width: 100%;
+    }
+    .aside-cont {
+        width: 100%;
+    }
+    ul {
+        width: 100%;
+    }
+}
+
 </style>

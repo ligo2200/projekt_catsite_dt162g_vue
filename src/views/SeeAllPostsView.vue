@@ -193,12 +193,72 @@ h2 {
 main {
   align-self: center;
   margin-top: 1%;
-  border: 2px solid lime;
 }
 .allposts {
   margin-top: 5%;
 }
 img {
   border: 1px solid rgb(49, 7, 73);
+}
+@media screen and (max-width: 650px) {
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flexcont {
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    margin-left: 25%;
+  }
+ 
+}
+
+@media screen and (min-width: 651px) and (max-width: 999px) {
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flexcont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sidebar {
+    width: 100%;
+    margin-left: 25%;
+  }
+  .article {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+  .sidebar {
+    width: 60%;
+  }
+  .article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .flexcont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  main {
+    margin-right: 5%;
+  }
+}
+
+@media screen and (min-width: 1401px) and (max-width: 1800px) {
+ .sidebar {
+  margin-top: 0.0.9%;
+ }
 }
 </style>

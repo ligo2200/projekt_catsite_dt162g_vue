@@ -268,4 +268,12 @@ article div button {
 .img {
   border: 1px solid rgb(49, 7, 73);
 }
+
+@media screen and (max-width: 650px) {
+    .catsarticles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  }
 </style>

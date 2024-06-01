@@ -147,4 +147,36 @@ export default {
 form input {
     box-shadow: 1px 1px 1px rgb(116, 116, 116) inset;
 }
+@media screen and (max-width: 650px) {
+    .submitbtn {
+    width: 100%;
+   }
+   .cont1 {
+    width: 80%;
+   }
+  }
+  
+  @media screen and (min-width: 651px) and (max-width: 999px) {
+    .submitbtn {
+    width: 100%;
+   }
+   .cont1 {
+    width: 60%;
+   }
+  }
+  
+  @media screen and (min-width: 1000px) and (max-width: 1400px) {
+   .submitbtn {
+    width: 100%;
+   }
+   .cont1 {
+    width: 40%;
+   }
+  }
+  
+  @media screen and (min-width: 1401px) and (max-width: 1800px) {
+    .submitbtn {
+    width: 40%;
+   }
+  }
 </style>

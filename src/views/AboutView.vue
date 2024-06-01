@@ -52,4 +52,44 @@ p {
     font-size: 1.8em;
     margin-top: 4%;
     margin-bottom: 4%;
-}</style>
+}
+@media screen and (max-width: 650px) {
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+    p {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 651px) and (max-width: 999px) {
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+    p {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+    img {
+        width: 50%;
+    }
+    p {
+        margin-left: 4%;
+        margin-right: 4%;
+        margin-top: 2%;
+    }
+}
+
+@media screen and (min-width: 1401px) and (max-width: 1800px) {
+    p {
+        margin-left: 4%;
+        margin-right: 4%;
+        margin-top: 2%;
+    }
+}
+
+</style>

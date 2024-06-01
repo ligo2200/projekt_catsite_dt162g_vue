@@ -142,5 +142,76 @@ li a:hover {
     justify-content: space-between;
     align-items: end;
 }
+
+@media screen and (max-width: 650px) {
+    div {
+        flex-direction: column;
+    }
+    header {
+        flex-direction: column;
+    }
+    .loggedin-header, .loggedout-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .heading h1 {
+        margin-bottom: 0px;
+        margin-left: 0%;
+    }
+    nav {
+        width: 60%;
+        font-weight: 600;
+        margin-bottom: 0.8%;
+    }
+    li {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: -25px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 651px) and (max-width: 999px) {
+    div {
+        flex-direction: column;
+    }
+    header {
+        flex-direction: column;
+    }
+    .loggedin-header, .loggedout-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .heading h1 {
+        margin-bottom: 0px;
+        margin-left: 0%;
+    }
+    nav {
+        width: 60%;
+        font-weight: 600;
+        margin-bottom: 0.8%;
+    }
+    li {
+        text-align: center;
+        margin-bottom: -25px;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+    nav {
+        width: 36%;
+        font-weight: 600;
+        margin-bottom: 0.8%;
+    }
+}
+
+@media screen and (min-width: 1401px) and (max-width: 1800px) {
+    nav {
+        width: 25%;
+    }
+}
 </style>
 

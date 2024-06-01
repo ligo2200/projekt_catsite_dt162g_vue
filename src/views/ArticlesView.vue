@@ -108,4 +108,42 @@ article {
 .img {
   border: 1px solid rgb(49, 7, 73);
 }
+
+@media screen and (max-width: 650px) {
+  .divcont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .articleLinks {
+      width: 100%;
+      text-align: center;
+    }
+    ul {
+      padding: 2%;
+    }
+  }
+  
+  @media screen and (min-width: 651px) and (max-width: 999px) {
+    .divcont {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .articleLinks {
+      width: 100%;
+      text-align: center;
+    }
+    ul {
+      padding: 4%;
+    }
+  }
+  
+  @media screen and (min-width: 1000px) and (max-width: 1400px) {
+      .articleLinks {
+        width: 30%;
+      }
+  }
+  
+
 </style>
